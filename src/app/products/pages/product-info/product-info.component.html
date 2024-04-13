@@ -1,0 +1,58 @@
+<div class="py-5">
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-6">
+        <products-carousel [images]="productImages"></products-carousel>
+      </div>
+      <div class="product-info col-6">
+        <div class="px-5">
+          <h1>{{ product.name }}</h1>
+          <p class="product-info__price">{{ productUnitPrice?.value ? ('S/'+ productUnitPrice?.value.toFixed(2) ) : productPriceRange }}</p>
+          <form [formGroup]="shoppingCartForm">
+            @if(hasFlavors()){
+              <div class="mb-3">
+                <label for="flavor" class="form-label">Sabor:</label>
+                <select id="flavor" class="form-select" formControlName="flavor">
+                  <option value=null selected>Seleccione...</option>
+                  @for (variation of product.variations; track variation.id) {
+                    <option [value]="variation.flavorName">{{ variation.flavorName }}</option>
+                  }
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="weight" class="form-label">Peso:</label>
+                <select id="weight" class="form-select" formControlName="weight">
+                  @if (productFlavor?.value == null || productFlavor?.value == "null") {1
+                    <option value="" disabled selected>Escoja un sabor...</option>
+                  } @else {
+                    <option value=null selected>Seleccione...</option>
+                    @for (variation of product.variations; track variation.id) {
+                      @if (variation.flavorName === productFlavor?.value) {
+                        <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} kg</option>
+                      }
+                    }
+                  }
+                </select>
+              </div>
+            }@else{
+              <div class="mb-3">
+                <label for="weight" class="form-label">Peso:</label>
+                <select id="weight" class="form-select" formControlName="weight">
+                  <option value=null selected>Seleccione...</option>
+                  @for (variation of product.variations; track variation.id) {
+                    <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} kg</option>
+                  }
+                </select>
+              </div>
+            }
+            <div class="mt-2 w-100 d-flex">
+              <input type="number" class="form-control me-2" id="quantity" [formControlName]="'quantity'">
+              <button type="submit" class="btn btn-dark flex-grow-1" (click)="onSubmit()">Add to cart</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

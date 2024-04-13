@@ -1,0 +1,14 @@
+<div (mouseenter)="toggle()" (mouseleave)="toggle()">
+  <p class="my-0 py-3">{{ text }}</p>
+  @if (isOpen){
+    <div class="position-absolute bg-white text-dark">
+      <ul class="list-group">
+        @for (item of items; track item){
+          <li class="list-group-item px-4 rounded-0">
+            <a class="nav-link" [href]="getFullPagePath(item.path, item.queryParams)" >{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>

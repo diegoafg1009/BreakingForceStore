@@ -1,0 +1,8 @@
+<aside [formGroup]="filterProductParams">
+  <h4 class="h4 mb-3">Filtros</h4>
+  <div class="d-flex flex-column gap-2">
+    <shared-radio-group [formControlName]="'brandId'" class="text-dark" [options]="brands" [text]="'Marcas'"></shared-radio-group>
+    <shared-radio-group [formControlName]="'subcategoryId'" class="text-dark" [options]="subcategories" [text]="'Categorías'"></shared-radio-group>
+    <shared-radio-group [formControlName]="'objectiveId'" class="text-dark" [options]="objectives" [text]="'Objetivos'"></shared-radio-group>
+  </div>
+</aside>

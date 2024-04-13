@@ -1,0 +1,7 @@
+<span class="h6">{{ text }}</span>
+<div class="mt-1">
+  <div class="p-1" *ngFor="let option of options">
+    <input type="radio" [value]="option.value" (change)="onInputChange($event)" [checked]="value === option.value">
+    <label class="ms-1">{{ option.label }}</label>
+  </div>
+</div>

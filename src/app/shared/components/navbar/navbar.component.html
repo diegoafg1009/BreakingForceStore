@@ -1,0 +1,38 @@
+ <nav class="navbar center">
+    <div class="container-fluid text-center">
+      <a class="navbar-brand" [routerLink]="''">
+        <img ngSrc="../../../../assets/images/logos/breaking-force-logo.png" alt="Logo" class="d-inline-block align-text-top logo"
+             height="1409" width="3353">
+      </a>
+      <ul class="d-flex navbar__list">
+        <li class="navbar__list-item">
+          <shared-navbar-dropdown text="Categorías" [items]="categories"></shared-navbar-dropdown>
+        </li>
+        <li class="navbar__list-item">
+          <shared-navbar-dropdown  text="Marcas" [items]="brands"></shared-navbar-dropdown >
+        </li>
+        <li class="navbar__list-item">
+          <shared-navbar-dropdown  text="Objetivos" [items]="objectives"></shared-navbar-dropdown >
+        </li>
+      </ul>
+      <div class="flex-grow-1 d-flex justify-content-center">
+        <div class="w-75">
+          <shared-search-bar></shared-search-bar>
+        </div>
+      </div>
+      <ul class="d-flex navbar__list">
+        <li class="navbar__list-item">
+          <a class="nav-link" [routerLink]="">
+            <i class="bi bi-person-circle navbar__icon navbar__list-item"></i>
+          </a>
+        </li>
+        <li class="navbar__list-item">
+          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#shopping-cart" aria-controls="shopping-cart">
+            <i class="bi bi-basket2 navbar__icon navbar__list-item"></i>
+          </button>
+        </li>
+      </ul>
+
+
+    </div>
+  </nav>

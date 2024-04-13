@@ -1,0 +1,8 @@
+<a [routerLink]="product.id" class="my-card card border-0 h-100">
+    <img class="position-relative card-img" [src]="productImage" [alt]="product.name">
+    <div class="card-body d-flex flex-column">
+        <h6>{{ product.name }}</h6>
+        <p class="mt-auto">{{ productPriceRange }}</p>
+        <button class="w-100 btn btn-dark">Ver</button>
+    </div>
+</a>

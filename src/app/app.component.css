@@ -1,0 +1,41 @@
+header {
+  height: 75px;
+}
+
+main{
+  margin-top: 75px;
+}
+
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px; /* Altura de la barra de carga */
+  background-color: red; /* Color de la barra de carga */
+  z-index: 9999; /* Asegura que la barra de carga esté por encima de otros elementos */
+  transition: width 0.3s ease; /* Transición suave de la anchura */
+}
+
+main{
+  background-color: #f8f9fa;
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.whatsapp-button img:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-button img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}

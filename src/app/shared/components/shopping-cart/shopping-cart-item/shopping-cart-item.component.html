@@ -1,0 +1,23 @@
+<div class="shopping-cart-item">
+  <div class="shopping-cart-item__image-container">
+    <img class="shopping-cart-item__image" [src]="variationImage">
+  </div>
+  <div class="shopping-cart-item__details">
+    <p class="shopping-cart-item__name">{{ variation.productName }}</p>
+    @if(variation.flavorName){
+      <span>{{ variation.flavorName }} / {{ variation.weight.toFixed(2) }} kg</span>
+    }@else{
+      <span>{{ variation.weight.toFixed(2) }} kg</span>
+    }
+    <span class="shopping-cart-item__price">S/{{ variation.unitPrice.toFixed(2) }}</span>
+    <div class="shopping-cart-item__buttons">
+      <div class="input-group shopping-cart-item__quantity">
+        <button (click)="modifyItemQuantity(item.quantity - 1)" class="btn btn-outline-secondary" id="button-addon1" type="button">-</button>
+        <input type="text" class="form-control" [value]="item.quantity" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <button (click)="modifyItemQuantity(item.quantity + 1)" class="btn btn-outline-secondary" type="button">+</button>
+      </div>
+      <i (click)="removeItem()" class="bi bi-trash-fill shopping-cart-item__remove-button"></i>
+    </div>
+
+  </div>
+</div>

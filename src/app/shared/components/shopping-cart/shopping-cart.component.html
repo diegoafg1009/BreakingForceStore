@@ -1,0 +1,20 @@
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="shopping-cart"
+     aria-labelledby="shopping-cart-label">
+  <div class="offcanvas-header d-flex align-items-center border-bottom">
+    <h2 class="offcanvas-title" id="shopping-cart-label">Productos</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    @if (items.length > 0) {
+      <div class="d-flex flex-column gap-3">
+        @for (item of items; track item.variationId) {
+          <shopping-cart-item [item]="item"></shopping-cart-item>
+        }
+      </div>
+    } @else {
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <p>El carrito está vacío</p>
+      </div>
+    }
+  </div>
+</div>

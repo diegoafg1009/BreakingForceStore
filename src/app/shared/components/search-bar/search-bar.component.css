@@ -1,0 +1,21 @@
+.search-bar{
+  background-color: inherit;
+  border-bottom: 1px solid white;
+  padding: 4px 10px;
+  overflow: hidden;
+}
+
+.search-bar__input{
+  background-color: inherit;
+  color: white;
+
+  border: 0;
+  outline: none;
+}
+
+.search-bar__icon {
+  font-size: 18px;
+  color: white;
+  padding: 0 8px;
+  cursor: pointer;
+}

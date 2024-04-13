@@ -1,0 +1,18 @@
+import { inject, Injectable } from '@angular/core';
+import { environment } from "../../../enviroments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { GetVariation } from "../dtos";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class VariationService {
+  private readonly _apiUrl: string = `${environment.apiUrl}/variations`;
+  private readonly _http: HttpClient = inject(HttpClient);
+
+  public getVariation(id: string): Observable<GetVariation> {
+    return this._http.get<GetVariation>(`${this._apiUrl}/${id}`);
+  }
+
+}
