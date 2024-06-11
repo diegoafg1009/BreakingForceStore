@@ -52,7 +52,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   changeQuantity(item: ShoppingCartItem): void {
-    if (item.quantity < 1){
+    if (item.quantity < 1 || isNaN(item.quantity)){
       this._shoppingCartService.modifyItemQuantity(item.variation.id, 1);
     } else {
       this._shoppingCartService.modifyItemQuantity(item.variation.id, item.quantity);
