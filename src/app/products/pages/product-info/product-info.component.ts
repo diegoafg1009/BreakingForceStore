@@ -1,21 +1,25 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product.service";
-import { GetProduct, ShoppingCartItem } from "../../dtos";
+import { GetProduct, LocalStorageShoppingCartItem } from "../../interfaces";
 import { ActivatedRoute } from "@angular/router";
 import { environment } from "../../../../enviroments/environment";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { ShoppingCartService } from "../../../shared/services/shopping-cart.service";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ShoppingCartService } from "../../../shared/services";
+import { Option } from "../../../shared/interfaces/option.interface";
+import { BaseForm } from "../../../shared/utils/base-form";
+import { ValidationErrors } from "../../../shared/enums/validation-errors.enum";
 
 @Component({
   selector: 'app-product-info',
   templateUrl: './product-info.component.html',
   styleUrl: './product-info.component.css'
 })
-export class ProductInfoComponent implements OnInit{
+export class ProductInfoComponent extends BaseForm implements OnInit{
   shoppingCartForm: FormGroup = {} as FormGroup;
   product: GetProduct = {} as GetProduct;
   productImages: string[] = [];
   productPriceRange: string = '';
+  flavors: string[] = [];
   private readonly _productService: ProductService = inject(ProductService);
   private readonly _route: ActivatedRoute = inject(ActivatedRoute);
   private readonly _imagesUrl: string = environment.imagesUrl;
@@ -59,19 +63,28 @@ export class ProductInfoComponent implements OnInit{
       });
       this.productPriceRange = this.getPriceRange();
       this.shoppingCartForm.patchValue(this.product);
+      this.flavors = Array.from(new Set(this.product.variations.map((variation) => variation.flavorName)));
     });
   }
 
   initShoppingCartItemForm(): FormGroup {
     return this._formBuilder.group({
-      name: [ null ],
       variationId: [ null ],
-      flavor: [ null ],
-      weight: [ null ],
-      unitPrice: [ null ],
-      quantity: [ 1 ]
+      flavor: [ null, [ this.hasFlavors() ? Validators.required : Validators.nullValidator ] ],
+      weight: [ null, [Validators.required] ],
+      quantity: [ 1, [Validators.min(1), this.integerValidator]]
     });
   }
+
+  protected integerValidator(control: AbstractControl):{[key: string]: any} | null{
+    const value = control.value;
+    if(Number.isInteger(value)){
+      return null;
+    }
+    return { integer: true };
+  }
+
+
 
   get productFlavor(){
     return this.shoppingCartForm.get('flavor');
@@ -99,6 +112,7 @@ export class ProductInfoComponent implements OnInit{
   public onSubmit(): void {
     if(this.shoppingCartForm.invalid){
       this.shoppingCartForm.markAllAsTouched();
+      console.log('Invalid form');
       return;
     }
     const variationId = this.product.variations.find((variation) => {
@@ -106,11 +120,12 @@ export class ProductInfoComponent implements OnInit{
     });
     this.shoppingCartForm.patchValue({ variationId: variationId!.id });
 
-    const shoppingCartItem : ShoppingCartItem = {
+    const shoppingCartItem : LocalStorageShoppingCartItem = {
       variationId: this.shoppingCartForm.value.variationId,
       quantity: this.shoppingCartForm.value.quantity
     };
     this._shoppingCartService.addItem(shoppingCartItem);
   }
 
+  protected readonly validationErrors = ValidationErrors;
 }

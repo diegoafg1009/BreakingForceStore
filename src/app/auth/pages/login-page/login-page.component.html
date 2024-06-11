@@ -1,0 +1,36 @@
+<h1 class="text-center fw-bold my-4">Iniciar Sesión</h1>
+<form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="email" class="form-label">Correo</label>
+    <input [formControlName]="'email'" type="email" class="form-control" id="email" placeholder="Correo electrónico">
+    @if (!isValidField(loginFormGroup, 'email')) {
+      @if (hasFieldError(loginFormGroup, validationErrors.required, 'email') != null) {
+        <span class="text-danger">El correo electrónico es requerido</span>
+      } @else if (hasFieldError(loginFormGroup, validationErrors.email, 'email') != null) {
+        <span class="text-danger">Ingreses un correo electrónico válido</span>
+      }
+    }
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    <input [formControlName]="'password'" type="password" class="form-control" id="password"
+           placeholder="Ingrese su contraseña">
+    @if (!isValidField(loginFormGroup, 'password')) {
+      @if (hasFieldError(loginFormGroup, validationErrors.required, 'password') != null) {
+        <span class="text-danger">La contraseña es requerida</span>
+      }
+    }
+  </div>
+  <button class="btn btn-dark w-100 my-2">Ingresar</button>
+  @if (loginFormGroup.getError('invalidCredentials')) {
+    <p class="text-danger text-center">Credenciales inválidas</p>
+  }@else if(loginFormGroup.getError('lockedAccount')){
+    <p class="text-danger text-center">Se intento ingresar muchas veces, intentelo de nuevo más tarde</p>
+  }
+  <div class="d-flex flex-column align-items-center my-4">
+    <span class="mb-2">¿No tienes cuenta?</span>
+    <a routerLink="/auth/register" class="text-dark fw-semibold link-underline-dark">
+      Registrarse
+    </a>
+  </div>
+</form>

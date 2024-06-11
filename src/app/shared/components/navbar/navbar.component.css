@@ -25,3 +25,8 @@ header {
   color: #fff;
   padding: 0 8px;
 }
+
+.navbar__icon{
+  font-size: 20px;
+  padding: 0 6px;
+}

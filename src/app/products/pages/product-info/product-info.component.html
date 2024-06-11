@@ -8,14 +8,14 @@
         <div class="px-5">
           <h1>{{ product.name }}</h1>
           <p class="product-info__price">{{ productUnitPrice?.value ? ('S/'+ productUnitPrice?.value.toFixed(2) ) : productPriceRange }}</p>
-          <form [formGroup]="shoppingCartForm">
+          <form [formGroup]="shoppingCartForm" (ngSubmit)="onSubmit()">
             @if(hasFlavors()){
               <div class="mb-3">
                 <label for="flavor" class="form-label">Sabor:</label>
                 <select id="flavor" class="form-select" formControlName="flavor">
                   <option value=null selected>Seleccione...</option>
-                  @for (variation of product.variations; track variation.id) {
-                    <option [value]="variation.flavorName">{{ variation.flavorName }}</option>
+                  @for (flavor of flavors; track flavor) {
+                    <option [value]="flavor">{{ flavor }}</option>
                   }
                 </select>
               </div>
@@ -28,7 +28,7 @@
                     <option value=null selected>Seleccione...</option>
                     @for (variation of product.variations; track variation.id) {
                       @if (variation.flavorName === productFlavor?.value) {
-                        <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} kg</option>
+                        <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} {{variation.measureUnit}}</option>
                       }
                     }
                   }
@@ -40,15 +40,23 @@
                 <select id="weight" class="form-select" formControlName="weight">
                   <option value=null selected>Seleccione...</option>
                   @for (variation of product.variations; track variation.id) {
-                    <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} kg</option>
+                    <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} {{variation.measureUnit}}</option>
                   }
                 </select>
               </div>
             }
-            <div class="mt-2 w-100 d-flex">
-              <input type="number" class="form-control me-2" id="quantity" [formControlName]="'quantity'">
-              <button type="submit" class="btn btn-dark flex-grow-1" (click)="onSubmit()">Add to cart</button>
+            <div class="my-2 w-100 d-flex">
+              <input type="number" class="form-control me-2" id="quantity" [min]="1" inputmode="numeric" [formControlName]="'quantity'" required>
+              <button type="submit" class="btn btn-dark flex-grow-1 fw-semibold"  [disabled]="shoppingCartForm.invalid" data-bs-toggle="offcanvas" data-bs-target="#shopping-cart" aria-controls="shopping-cart">Agregar al carrito</button>
             </div>
+            @if (!isValidField(shoppingCartForm, 'quantity')) {
+              @if(hasFieldError(shoppingCartForm, 'min', 'quantity')){
+                <span class=" text-danger">La cantidad solicitada debe ser mayor o igual a 1.</span>
+              }
+              @else if (hasFieldError(shoppingCartForm, 'integer', 'quantity')) {
+                <span class=" text-danger">La cantidad solicitada debe de ser entera.</span>
+              }
+            }
           </form>
         </div>
       </div>

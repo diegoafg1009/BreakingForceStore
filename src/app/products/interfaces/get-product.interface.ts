@@ -18,4 +18,5 @@ interface GetVariationSimple{
   weight: number;
   stock: number;
   flavorName: string;
+  measureUnit: string;
 }

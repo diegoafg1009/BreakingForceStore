@@ -8,6 +8,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingCartItemComponent } from './components/shopping-cart/shopping-cart-item/shopping-cart-item.component';
+import { FormsModule } from "@angular/forms";
+import { CurrencyComponent } from './components/currency/currency.component';
 
 
 
@@ -18,18 +20,21 @@ import { ShoppingCartItemComponent } from './components/shopping-cart/shopping-c
     NavbarDropdownComponent,
     RadioGroupComponent,
     ShoppingCartComponent,
-    ShoppingCartItemComponent
+    ShoppingCartItemComponent,
+    CurrencyComponent,
   ],
   imports: [
     CommonModule,
     NgOptimizedImage,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
     NavbarComponent,
     RadioGroupComponent,
     ShoppingCartComponent,
+    CurrencyComponent
   ]
 })
 export class SharedModule { }

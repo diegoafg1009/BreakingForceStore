@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { GetProductSimple } from "../../dtos";
+import { GetProductSimple } from "../../interfaces";
 import { ProductService } from "../../services/product.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
@@ -52,6 +52,7 @@ export class ProductsPageComponent implements OnInit{
 
   onSubmit(filterProductParams: FormGroup) {
     this.loadProducts(filterProductParams);
+    console.log(filterProductParams.value);
     this._route.queryParams.subscribe(params => {
       this._router.navigate([], {
         queryParams: filterProductParams.value,

@@ -1,0 +1,37 @@
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" colspan="2">Producto</th>
+      <th scope="col" class="text-center">Precio</th>
+      <th scope="col" class="text-center">Cantidad</th>
+      <th scope="col" class="text-center">Importe</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      @for (item of items; track item.variation.id) {
+        <tr class="align-middle">
+          <td>
+            <img [src]="imageBasePath + '/' + item.variation.image">
+          </td>
+          <td class="text-start">
+            <span class="fw-bold">{{ item.variation.productName }}</span>
+            <br>
+            @if (item.variation.flavorName) {
+              <span class="text-secondary">{{ item.variation.flavorName }} / {{ item.variation.weight.toFixed(2) }} kg</span>
+            } @else {
+              <span>{{ item.variation.weight.toFixed(2) }} kg</span>
+            }
+          </td>
+          <td class="text-center">
+            <shared-currency [value]="item.variation.unitPrice"></shared-currency>
+          </td>
+          <td class="text-center">{{ item.quantity }}</td>
+          <td class="text-center fw-bold">
+            <shared-currency class="item-total" [value]="item.quantity * item.variation.unitPrice"></shared-currency>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

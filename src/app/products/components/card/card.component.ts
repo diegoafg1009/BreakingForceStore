@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GetProductSimple } from "../../dtos";
+import { GetProductSimple } from "../../interfaces";
 import { environment } from "../../../../enviroments/environment";
 import transformJavaScript from "@angular-devkit/build-angular/src/tools/esbuild/javascript-transformer-worker";
 
@@ -23,9 +23,9 @@ export class CardComponent implements OnInit {
 
   private getPriceRange(): string{
     if(this.product.higherPrice === this.product.lowerPrice){
-      return `S/.${this.product.higherPrice}`;
+      return `S/.${this.product.higherPrice.toFixed(2)}`;
     }
-    return `S/.${this.product.lowerPrice} - S/.${this.product.higherPrice}`;
+    return `S/.${this.product.lowerPrice.toFixed(2)} - S/.${this.product.higherPrice.toFixed(2)}`;
   }
 
 }

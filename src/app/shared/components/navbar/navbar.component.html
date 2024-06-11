@@ -1,7 +1,7 @@
  <nav class="navbar center">
     <div class="container-fluid text-center">
       <a class="navbar-brand" [routerLink]="''">
-        <img ngSrc="../../../../assets/images/logos/breaking-force-logo.png" alt="Logo" class="d-inline-block align-text-top logo"
+        <img ngSrc="../../../../assets/images/logos/breaking-force-logo.png" alt="Logo" class="d-inline-block align-text-top logo" priority
              height="1409" width="3353">
       </a>
       <ul class="d-flex navbar__list">
@@ -23,12 +23,13 @@
       <ul class="d-flex navbar__list">
         <li class="navbar__list-item">
           <a class="nav-link" [routerLink]="">
-            <i class="bi bi-person-circle navbar__icon navbar__list-item"></i>
+            <i class="bi bi-person-circle navbar__icon"></i>
           </a>
         </li>
         <li class="navbar__list-item">
           <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#shopping-cart" aria-controls="shopping-cart">
-            <i class="bi bi-basket2 navbar__icon navbar__list-item"></i>
+            <i class="bi bi-basket2 navbar__icon"></i>
+            <span>{{ shoppingCartItems }}</span>
           </button>
         </li>
       </ul>

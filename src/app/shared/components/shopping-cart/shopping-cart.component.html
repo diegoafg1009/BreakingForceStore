@@ -4,17 +4,36 @@
     <h2 class="offcanvas-title" id="shopping-cart-label">Productos</h2>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
-    @if (items.length > 0) {
-      <div class="d-flex flex-column gap-3">
-        @for (item of items; track item.variationId) {
-          <shopping-cart-item [item]="item"></shopping-cart-item>
-        }
+  @if (items.length > 0) {
+    <div class="offcanvas-body d-flex flex-column">
+      @if (isLoading) {
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="d-flex flex-column gap-3 overflow-y-auto h-100">
+          @for (item of items; track item.variation.id) {
+            <shopping-cart-item [item]="item" (onAddOne)="addOne($event)" (onRemoveOne)="removeOne($event)"
+                                (onRemove)="removeItem($event)" (onChangeQuantity)="changeQuantity($event)"></shopping-cart-item>
+          }
+        </div>
+
+      }
+    </div>
+    <div class="border-top p-4">
+      <div class="d-flex justify-content-between px-5 pb-3">
+        <span>Total</span>
+        <shared-currency [value]="total"></shared-currency>
       </div>
-    } @else {
-      <div class="d-flex justify-content-center align-items-center h-100">
-        <p>El carrito está vacío</p>
-      </div>
-    }
-  </div>
+      <button class="btn btn btn-dark w-100"  data-bs-dismiss="offcanvas" aria-label="Close" (click)="goToCheckout()">Finalizar Comprar</button>
+    </div>
+
+  } @else {
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <p>El carrito está vacío</p>
+    </div>
+  }
 </div>
+

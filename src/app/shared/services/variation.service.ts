@@ -15,4 +15,8 @@ export class VariationService {
     return this._http.get<GetVariation>(`${this._apiUrl}/${id}`);
   }
 
+  public getVariations(ids: string[]): Observable<GetVariation[]> {
+    return this._http.post<GetVariation[]>(`${this._apiUrl}/by-ids`, ids);
+  }
+
 }

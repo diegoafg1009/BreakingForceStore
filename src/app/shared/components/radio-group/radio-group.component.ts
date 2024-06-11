@@ -20,7 +20,7 @@ export class RadioGroupComponent implements ControlValueAccessor {
   text!: string;
   @Input({ required: true })
   options: Option[] = [];
-  private _value: any;
+  private _value: string | null = null;
 
   get value(): string | null {
     return this._value;
@@ -37,8 +37,10 @@ export class RadioGroupComponent implements ControlValueAccessor {
   onTouched = () => {
   };
 
-  writeValue(value: any): void {
-    this.value = value;
+  writeValue(value: string | null ): void {
+    if (value !== undefined) {
+      this.value = value;
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -47,9 +49,5 @@ export class RadioGroupComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
-  }
-
-  onInputChange(event: Event) {
-    this.value = (event.target as HTMLInputElement).value;
   }
 }

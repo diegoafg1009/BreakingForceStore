@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { GetProduct, GetProductSimple } from "../dtos";
+import { GetProduct, GetProductSimple } from "../interfaces";
 import { environment } from "../../../enviroments/environment";
 import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
