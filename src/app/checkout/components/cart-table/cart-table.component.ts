@@ -4,7 +4,7 @@ import {
   LocalStorageShoppingCartItem,
   ShoppingCartItem
 } from "../../../shared/interfaces/shopping-cart-item.interface";
-import { environment } from "../../../../enviroments/environment";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'checkout-cart-table',

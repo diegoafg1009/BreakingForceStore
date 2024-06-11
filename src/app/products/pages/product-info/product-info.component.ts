@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product.service";
 import { GetProduct, LocalStorageShoppingCartItem } from "../../interfaces";
 import { ActivatedRoute } from "@angular/router";
-import { environment } from "../../../../enviroments/environment";
+import { environment } from "../../../../environments/environment";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ShoppingCartService } from "../../../shared/services";
 import { Option } from "../../../shared/interfaces/option.interface";

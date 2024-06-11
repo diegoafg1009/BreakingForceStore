@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GetProductSimple } from "../../interfaces";
-import { environment } from "../../../../enviroments/environment";
+import { environment } from "../../../../environments/environment";
 import transformJavaScript from "@angular-devkit/build-angular/src/tools/esbuild/javascript-transformer-worker";
 
 @Component({

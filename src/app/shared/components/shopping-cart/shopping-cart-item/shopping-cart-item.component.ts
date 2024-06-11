@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { GetVariation } from "../../../dtos";
-import { environment } from "../../../../../enviroments/environment";
+import { environment } from "../../../../../environments/environment";
 import { ShoppingCartItem } from "../../../interfaces/shopping-cart-item.interface";
 import { ShoppingCartService } from "../../../services";
 

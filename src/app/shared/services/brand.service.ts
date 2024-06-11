@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { GetBrand } from "../dtos";
-import { environment } from "../../../enviroments/environment";
+import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
