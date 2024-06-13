@@ -1,7 +1,7 @@
 <span class="h6">{{ text }}</span>
 <div class="mt-1">
   <div class="p-1" *ngFor="let option of options">
-    <input type="radio" [(ngModel)]="value" [value]="option.value" [name]="text">
-    <label class="ms-1">{{ option.label }}</label>
+    <input [id]="text + '-' + option.value" class="btn-check" type="radio" [(ngModel)]="value" [value]="option.value" [name]="text">
+    <label class="ms-1" [for]="text + '-' + option.value">{{ option.label }}</label>
   </div>
 </div>

@@ -9,7 +9,6 @@ import { ProductsModule } from "./products/products.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { PascalCaseInterceptorService } from "./interceptors/pascal-case-interceptor.service";
 import { NgOptimizedImage } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [

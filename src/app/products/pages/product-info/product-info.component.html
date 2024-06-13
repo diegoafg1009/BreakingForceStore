@@ -23,7 +23,7 @@
                 <label for="weight" class="form-label">Peso:</label>
                 <select id="weight" class="form-select" formControlName="weight">
                   @if (productFlavor?.value == null || productFlavor?.value == "null") {1
-                    <option value="" disabled selected>Escoja un sabor...</option>
+                    <option value=null disabled selected>Escoja un sabor...</option>
                   } @else {
                     <option value=null selected>Seleccione...</option>
                     @for (variation of product.variations; track variation.id) {
@@ -58,6 +58,20 @@
               }
             }
           </form>
+          <div class="accordion pt-2">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  DESCRIPCIÓN
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                  <p>{{ product.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

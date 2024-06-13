@@ -12,10 +12,12 @@
       @for (item of items; track item.variation.id) {
         <tr class="align-middle">
           <td>
-            <img [src]="imageBasePath + '/' + item.variation.image">
+            <a [routerLink]="['/products', item.variation.productId]">
+              <img [src]="imageBasePath + '/' + item.variation.image">
+            </a>
           </td>
           <td class="text-start">
-            <span class="fw-bold">{{ item.variation.productName }}</span>
+            <a [routerLink]="['/products', item.variation.productId]" class="fw-bold">{{ item.variation.productName }}</a>
             <br>
             @if (item.variation.flavorName) {
               <span class="text-secondary">{{ item.variation.flavorName }} / {{ item.variation.weight.toFixed(2) }} kg</span>

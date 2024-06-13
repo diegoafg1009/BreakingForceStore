@@ -1,9 +1,13 @@
 <div class="shopping-cart-item">
   <div class="shopping-cart-item__image-container">
-    <img class="shopping-cart-item__image" [src]="variationImage" [alt]="item.variation.productName">
+    <a [routerLink]="['/products', item.variation.productId]">
+      <img class="shopping-cart-item__image" [src]="variationImage" [alt]="item.variation.productName">
+    </a>
   </div>
   <div class="shopping-cart-item__details">
-    <p class="shopping-cart-item__name">{{ item.variation.productName }}</p>
+    <a class="shopping-cart-item__name" [routerLink]="['/products', item.variation.productId]" data-bs-dismiss="offcanvas">
+      {{ item.variation.productName }}
+    </a>
     @if (item.variation.flavorName) {
       <p>{{ item.variation.flavorName }} / {{ item.variation.weight.toFixed(2) }} kg</p>
     } @else {

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product.service";
 import { GetProduct, LocalStorageShoppingCartItem } from "../../interfaces";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from "../../../../environments/environment";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ShoppingCartService } from "../../../shared/services";
@@ -20,18 +20,22 @@ export class ProductInfoComponent extends BaseForm implements OnInit{
   productImages: string[] = [];
   productPriceRange: string = '';
   flavors: string[] = [];
+  private _id!: string;
   private readonly _productService: ProductService = inject(ProductService);
   private readonly _route: ActivatedRoute = inject(ActivatedRoute);
   private readonly _imagesUrl: string = environment.imagesUrl;
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _shoppingCartService: ShoppingCartService = inject(ShoppingCartService);
+  private readonly _router: Router = inject(Router);
 
   ngOnInit(): void {
 
-    const id = this._route.snapshot.paramMap.get('id')!;
+    this._route.params.subscribe((params) => {
+      this._id = params['id'];
+      this.loadProduct(this._id);
+      this.shoppingCartForm = this.initShoppingCartItemForm();
+    })
 
-    this.shoppingCartForm = this.initShoppingCartItemForm();
-    this.loadProduct(id);
     this.productFlavor?.valueChanges.subscribe((value) => {
       this.shoppingCartForm.patchValue({ weight: null });
     });

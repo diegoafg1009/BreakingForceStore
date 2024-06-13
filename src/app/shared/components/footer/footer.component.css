@@ -1,0 +1,17 @@
+:host{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  cursor: pointer;
+  //Subrayar
+  text-decoration: underline;
+}

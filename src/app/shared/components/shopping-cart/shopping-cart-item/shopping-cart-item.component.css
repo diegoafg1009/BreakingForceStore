@@ -29,6 +29,12 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.shopping-cart-item__name:hover{
+  text-decoration: underline;
 }
 
 .shopping-cart-item__remove-button{

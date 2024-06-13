@@ -10,6 +10,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShoppingCartItemComponent } from './components/shopping-cart/shopping-cart-item/shopping-cart-item.component';
 import { FormsModule } from "@angular/forms";
 import { CurrencyComponent } from './components/currency/currency.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -22,6 +23,7 @@ import { CurrencyComponent } from './components/currency/currency.component';
     ShoppingCartComponent,
     ShoppingCartItemComponent,
     CurrencyComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { CurrencyComponent } from './components/currency/currency.component';
     NavbarComponent,
     RadioGroupComponent,
     ShoppingCartComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

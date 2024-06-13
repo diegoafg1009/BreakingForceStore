@@ -18,12 +18,13 @@ main{
 
 main{
   background-color: #f8f9fa;
+  min-height: calc(100vh - 75px);
 }
 
 .whatsapp-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 24px;
+  right: 24px;
   z-index: 1000;
   cursor: pointer;
 }
