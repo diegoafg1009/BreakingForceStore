@@ -11,6 +11,8 @@ import { ShoppingCartItemComponent } from './components/shopping-cart/shopping-c
 import { FormsModule } from "@angular/forms";
 import { CurrencyComponent } from './components/currency/currency.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MobileMenuComponent } from './components/navbar/mobile-menu/mobile-menu.component';
+import { AccordionComponent } from './components/accordion/accordion.component';
 
 
 
@@ -24,6 +26,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ShoppingCartItemComponent,
     CurrencyComponent,
     FooterComponent,
+    MobileMenuComponent,
+    AccordionComponent,
   ],
   imports: [
     CommonModule,
@@ -35,9 +39,11 @@ import { FooterComponent } from './components/footer/footer.component';
   exports: [
     NavbarComponent,
     RadioGroupComponent,
+    ShoppingCartItemComponent,
     ShoppingCartComponent,
     CurrencyComponent,
-    FooterComponent
+    FooterComponent,
+    AccordionComponent
   ]
 })
 export class SharedModule { }

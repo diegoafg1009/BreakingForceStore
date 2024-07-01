@@ -17,7 +17,7 @@ import { Option } from "../../interfaces/option.interface";
 
 export class RadioGroupComponent implements ControlValueAccessor {
   @Input({ required: true })
-  text!: string;
+  idPrefix!: string;
   @Input({ required: true })
   options: Option[] = [];
   private _value: string | null = null;

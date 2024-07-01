@@ -1,10 +1,15 @@
- <nav class="navbar center">
-    <div class="container-fluid text-center">
-      <a class="navbar-brand" [routerLink]="''">
-        <img ngSrc="../../../../assets/images/logos/breaking-force-logo.png" alt="Logo" class="d-inline-block align-text-top logo" priority
-             height="1409" width="3353">
-      </a>
-      <ul class="d-flex navbar__list">
+ <nav class="navbar">
+    <div class="container text-center">
+      <div class="d-flex align-items-center">
+      <shared-mobile-menu class="d-lg-none" [brands]="brands" [categories]="categories" [objectives]="objectives"></shared-mobile-menu>
+
+        <a class="navbar-brand " [routerLink]="''">
+
+          <img ngSrc="../../../../assets/images/logos/breaking-force-logo.png" alt="Logo" class="d-inline-block align-text-top logo" priority
+               height="1409" width="3353">
+        </a>
+      </div>
+      <ul class="d-flex navbar__list d-none d-lg-flex">
         <li class="navbar__list-item">
           <shared-navbar-dropdown text="Categorías" [items]="categories"></shared-navbar-dropdown>
         </li>
@@ -15,7 +20,7 @@
           <shared-navbar-dropdown  text="Objetivos" [items]="objectives"></shared-navbar-dropdown >
         </li>
       </ul>
-      <div class="flex-grow-1 d-flex justify-content-center">
+      <div class="flex-grow-1 d-none d-md-flex justify-content-center">
         <div class="w-75">
           <shared-search-bar></shared-search-bar>
         </div>
@@ -26,11 +31,13 @@
             <i class="bi bi-person-circle navbar__icon"></i>
           </a>
         </li>
-        <li class="navbar__list-item">
+        <li class="navbar__list-item position-relative">
           <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#shopping-cart" aria-controls="shopping-cart">
-            <i class="bi bi-basket2 navbar__icon"></i>
-            <span>{{ shoppingCartItems }}</span>
+            <i class="bi bi-cart navbar__icon"></i>
           </button>
+          <div class="shopping-cart-counter">
+            <span> {{ shoppingCartItems }} </span>
+          </div>
         </li>
       </ul>
 

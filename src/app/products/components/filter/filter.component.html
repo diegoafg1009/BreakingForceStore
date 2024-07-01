@@ -1,8 +1,70 @@
-<aside [formGroup]="filterProductParams">
-  <h4 class="h4 mb-3">Filtros</h4>
-  <div class="d-flex flex-column gap-2">
-    <shared-radio-group [formControlName]="'brandId'" class="text-dark" [options]="brands" [text]="'Marcas'"></shared-radio-group>
-    <shared-radio-group [formControlName]="'subcategoryId'" class="text-dark" [options]="subcategories" [text]="'Categorías'"></shared-radio-group>
-    <shared-radio-group [formControlName]="'objectiveId'" class="text-dark" [options]="objectives" [text]="'Objetivos'"></shared-radio-group>
+<aside [formGroup]="filterProductParams" class="d-none d-lg-block">
+  <h4 class="m-0 pb-2 border-bottom border-2 border-black">FILTROS</h4>
+  <div class="d-flex flex-column">
+    <shared-accordion class="border-bottom" title="Categoría" [withoutColor]="true" [active]="true"
+                      [titleStyles]="['px-0', 'shadow-none']"
+                      [rounded]="false">
+      <div class="mb-2">
+        <shared-radio-group [formControlName]="'subcategoryId'" class="text-dark" [options]="subcategories"
+                            idPrefix="Categoria"></shared-radio-group>
+      </div>
+    </shared-accordion>
+    <shared-accordion class="border-bottom" title="Marca" [withoutColor]="true" [active]="true"
+                      [titleStyles]="['px-0', 'shadow-none']"
+                      [rounded]="false">
+      <div class="mb-2">
+        <shared-radio-group [formControlName]="'brandId'" class="text-dark" [options]="brands"
+                            idPrefix="Marca"></shared-radio-group>
+      </div>
+    </shared-accordion>
+    <shared-accordion title="Objetivo" [withoutColor]="true" [active]="true" [titleStyles]="['px-0', 'shadow-none']"
+                      [rounded]="false">
+      <div class="mb-2">
+        <shared-radio-group [formControlName]="'objectiveId'" class="text-dark" [options]="objectives"
+                            idPrefix="Objetivo"></shared-radio-group>
+      </div>
+    </shared-accordion>
   </div>
 </aside>
+<div class="bg-secondary-subtle rounded p-3 d-flex justify-content-between d-lg-none">
+  <button class="btn btn-outline-dark" data-bs-toggle="offcanvas" data-bs-target="#mobile-filter"
+          aria-controls="mobile-filter">
+    <i class="bi bi-funnel-fill me-2"></i>
+    <span>Filtros</span>
+  </button>
+  <div></div>
+</div>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="mobile-filter"
+     aria-labelledby="mobile-filter">
+  <div class="offcanvas-header">
+    <h4 class="fs-2 fw-bolder offcanvas-title" id="offcanvasWithBothOptionsLabel">FILTROS</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex flex-column">
+      <shared-accordion class="border-bottom" title="Categoría" [withoutColor]="true" [active]="true"
+                        [titleStyles]="['px-0', 'shadow-none']"
+                        [rounded]="false">
+        <div class="mb-2">
+          <shared-radio-group [formControlName]="'subcategoryId'" class="text-dark" [options]="subcategories"
+                              idPrefix="Categoria"></shared-radio-group>
+        </div>
+      </shared-accordion>
+      <shared-accordion class="border-bottom" title="Marca" [withoutColor]="true" [active]="true"
+                        [titleStyles]="['px-0', 'shadow-none']"
+                        [rounded]="false">
+        <div class="mb-2">
+          <shared-radio-group [formControlName]="'brandId'" class="text-dark" [options]="brands"
+                              idPrefix="Marca"></shared-radio-group>
+        </div>
+      </shared-accordion>
+      <shared-accordion title="Objetivo" [withoutColor]="true" [active]="true" [titleStyles]="['px-0', 'shadow-none']"
+                        [rounded]="false">
+        <div class="mb-2">
+          <shared-radio-group [formControlName]="'objectiveId'" class="text-dark" [options]="objectives"
+                              idPrefix="Objetivo"></shared-radio-group>
+        </div>
+      </shared-accordion>
+    </div>
+  </div>
+</div>

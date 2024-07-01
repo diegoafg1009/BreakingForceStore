@@ -1,0 +1,17 @@
+<div class="accordion" [ngClass]="{'accordion-flush': !rounded}">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button align-items-center" [style.color]="withoutColor ? 'black !important' : ''"
+              [ngClass]="{'collapsed': !active}" type="button" data-bs-toggle="collapse"
+              [classList]="titleStyles.join(' ')" attr.data-bs-target="#{{ title }}"
+              [attr.aria-expanded]="active ? 'true': 'false'" aria-controls="panelsStayOpen-collapseOne">
+        {{ title }}
+      </button>
+    </h2>
+    <div id="{{ title }}" class="accordion-collapse collapse" [ngClass]="{'show': active}">
+      <div class="accordion-body p-0">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

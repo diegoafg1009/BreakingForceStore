@@ -1,4 +1,9 @@
 h4{
-  font-weight: bold;
+  font-weight: 800!important;
+}
+
+shared-accordion div{
+  max-height: 254px;
+  overflow: auto;
 }
 

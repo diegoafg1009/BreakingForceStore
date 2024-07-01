@@ -1,80 +1,71 @@
-<div class="py-5">
-  <div class="container py-4">
-    <div class="row">
-      <div class="col-6">
-        <products-carousel [images]="productImages"></products-carousel>
-      </div>
-      <div class="product-info col-6">
-        <div class="px-5">
-          <h1>{{ product.name }}</h1>
-          <p class="product-info__price">{{ productUnitPrice?.value ? ('S/'+ productUnitPrice?.value.toFixed(2) ) : productPriceRange }}</p>
-          <form [formGroup]="shoppingCartForm" (ngSubmit)="onSubmit()">
-            @if(hasFlavors()){
-              <div class="mb-3">
-                <label for="flavor" class="form-label">Sabor:</label>
-                <select id="flavor" class="form-select" formControlName="flavor">
-                  <option value=null selected>Seleccione...</option>
-                  @for (flavor of flavors; track flavor) {
-                    <option [value]="flavor">{{ flavor }}</option>
-                  }
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="weight" class="form-label">Peso:</label>
-                <select id="weight" class="form-select" formControlName="weight">
-                  @if (productFlavor?.value == null || productFlavor?.value == "null") {1
-                    <option value=null disabled selected>Escoja un sabor...</option>
-                  } @else {
-                    <option value=null selected>Seleccione...</option>
-                    @for (variation of product.variations; track variation.id) {
-                      @if (variation.flavorName === productFlavor?.value) {
-                        <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} {{variation.measureUnit}}</option>
-                      }
-                    }
-                  }
-                </select>
-              </div>
-            }@else{
-              <div class="mb-3">
-                <label for="weight" class="form-label">Peso:</label>
-                <select id="weight" class="form-select" formControlName="weight">
-                  <option value=null selected>Seleccione...</option>
-                  @for (variation of product.variations; track variation.id) {
-                    <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} {{variation.measureUnit}}</option>
-                  }
-                </select>
-              </div>
-            }
-            <div class="my-2 w-100 d-flex">
-              <input type="number" class="form-control me-2" id="quantity" [min]="1" inputmode="numeric" [formControlName]="'quantity'" required>
-              <button type="submit" class="btn btn-dark flex-grow-1 fw-semibold"  [disabled]="shoppingCartForm.invalid" data-bs-toggle="offcanvas" data-bs-target="#shopping-cart" aria-controls="shopping-cart">Agregar al carrito</button>
-            </div>
-            @if (!isValidField(shoppingCartForm, 'quantity')) {
-              @if(hasFieldError(shoppingCartForm, 'min', 'quantity')){
-                <span class=" text-danger">La cantidad solicitada debe ser mayor o igual a 1.</span>
-              }
-              @else if (hasFieldError(shoppingCartForm, 'integer', 'quantity')) {
-                <span class=" text-danger">La cantidad solicitada debe de ser entera.</span>
-              }
-            }
-          </form>
-          <div class="accordion pt-2">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                  DESCRIPCIÓN
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <p>{{ product.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-md-6 col-12">
+    <products-carousel [images]="productImages"></products-carousel>
   </div>
-
+  <div class="product-info col-md-6 col-12">
+    <h1>{{ product.name }}</h1>
+    <p
+      class="product-info__price">{{ productUnitPrice?.value ? ('S/' + productUnitPrice?.value.toFixed(2)) : productPriceRange }}</p>
+    <form [formGroup]="shoppingCartForm" (ngSubmit)="onSubmit()">
+      @if (hasFlavors()) {
+        <div class="mb-3">
+          <label for="flavor" class="form-label">Sabor:</label>
+          <select id="flavor" class="form-select" formControlName="flavor">
+            <option value=null selected>Seleccione...</option>
+            @for (flavor of flavors; track flavor) {
+              <option [value]="flavor">{{ flavor }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="weight" class="form-label">Tamaño:</label>
+          <select id="weight" class="form-select" formControlName="weight">
+            @if (productFlavor?.value == null || productFlavor?.value == "null") {
+              1
+              <option value=null disabled selected>Escoja un sabor...</option>
+            } @else {
+              <option value=null selected>Seleccione...</option>
+              @for (variation of product.variations; track variation.id) {
+                @if (variation.flavorName === productFlavor?.value) {
+                  <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} {{ variation.measureUnit }}
+                  </option>
+                }
+              }
+            }
+          </select>
+        </div>
+      } @else {
+        <div class="mb-3">
+          <label for="weight" class="form-label">Tamaño:</label>
+          <select id="weight" class="form-select" formControlName="weight">
+            <option value=null selected>Seleccione...</option>
+            @for (variation of product.variations; track variation.id) {
+              <option [value]="variation.weight">{{ variation.weight.toFixed(2) }} {{ variation.measureUnit }}
+              </option>
+            }
+          </select>
+        </div>
+      }
+      <div class="my-2 w-100 d-flex">
+        <input type="number" class="form-control me-2" id="quantity" [min]="1" inputmode="numeric"
+               [formControlName]="'quantity'" required>
+        <button type="submit" class="btn btn-dark flex-grow-1 fw-semibold" [disabled]="shoppingCartForm.invalid"
+                data-bs-toggle="offcanvas" data-bs-target="#shopping-cart" aria-controls="shopping-cart">Agregar al
+          carrito
+        </button>
+      </div>
+      @if (!isValidField(shoppingCartForm, 'quantity')) {
+        @if (hasFieldError(shoppingCartForm, 'min', 'quantity')) {
+          <span class=" text-danger">La cantidad solicitada debe ser mayor o igual a 1.</span>
+        } @else if (hasFieldError(shoppingCartForm, 'integer', 'quantity')) {
+          <span class=" text-danger">La cantidad solicitada debe de ser entera.</span>
+        }
+      }
+    </form>
+    <shared-accordion title="DESCRIPCIÓN">
+      <div class="p-3">
+        <p>{{ product.description }}</p>
+      </div>
+    </shared-accordion>
+  </div>
 </div>

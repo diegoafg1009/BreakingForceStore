@@ -11,6 +11,6 @@ export class BrandService {
   private readonly _apiUrl: string = `${environment.apiUrl}/brands`
   private readonly _http: HttpClient = inject(HttpClient);
   public getBrands(): Observable<GetBrand[]>{
-    return this._http.get<GetBrand[]>(`${this._apiUrl}/get-all`);
+    return this._http.get<GetBrand[]>(`${this._apiUrl}/get-all-active`);
   }
 }

@@ -6,8 +6,8 @@
     <tbody>
       @for (item of items; track item.variation.id) {
         <tr>
-          <td>
-            <img class="rounded-2 py-1" [src]="imageBasePath + '/' + item.variation.image">
+          <td style="width: 64px">
+            <img class="rounded-2 py-1 pe-2 w-100" [src]="imageBasePath + '/' + item.variation.image">
           </td>
           <td class="text-start">
             <span>{{ item.variation.productName }}</span>
@@ -17,21 +17,22 @@
                 kg</span>
             } @else {
               <span>{{ item.variation.weight.toFixed(2) }} kg</span>
-            }<span class="ms-3 fw-semibold">× {{ item.quantity }}</span>
-          </td>
-          <td class="text-end fw-semibold">
-            <shared-currency class="item-total" [value]="item.quantity * item.variation.unitPrice"></shared-currency>
+            }
+            <div class="d-flex justify-content-between">
+              <shared-currency [value]="item.variation.unitPrice"></shared-currency>
+              <span class="fw-bold">x {{ item.quantity }}</span>
+            </div>
           </td>
         </tr>
       }
     <tr>
-      <th colspan="2" class="pt-4 text-start" scope="row">Subtotal</th>
+      <th colspan="1" class="pt-4 text-start" scope="row">Subtotal</th>
       <td class="pt-4 text-end">
         <shared-currency class="fw-semibold" [value]="total"></shared-currency>
       </td>
     </tr>
     <tr>
-      <th colspan="2" class="text-start" scope="row">Gastos de Envío</th>
+      <th colspan="1" class="text-start" scope="row">Gastos de Envío</th>
       <td class="text-end">
         <shared-currency class="fw-semibold" [value]="0"></shared-currency>
       </td>
@@ -39,7 +40,7 @@
     </tbody>
     <tfoot>
     <tr class="fw-bolder fs-5">
-      <th colspan="2" class="text-start fw-bolder" >TOTAL</th>
+      <th colspan="1" class="text-start fw-bolder" >TOTAL</th>
       <td class="text-end fw-bolder">
         <shared-currency [value]="total"></shared-currency>
       </td>

@@ -1,11 +1,12 @@
 <div class="shopping-cart-item">
   <div class="shopping-cart-item__image-container">
-    <a [routerLink]="['/products', item.variation.productId]">
+    <a [routerLink]="['/products', item.variation.productId]" data-bs-dismiss="offcanvas">
       <img class="shopping-cart-item__image" [src]="variationImage" [alt]="item.variation.productName">
     </a>
   </div>
   <div class="shopping-cart-item__details">
-    <a class="shopping-cart-item__name" [routerLink]="['/products', item.variation.productId]" data-bs-dismiss="offcanvas">
+    <a class="shopping-cart-item__name" [routerLink]="['/products', item.variation.productId]"
+       data-bs-dismiss="offcanvas">
       {{ item.variation.productName }}
     </a>
     @if (item.variation.flavorName) {
@@ -17,7 +18,8 @@
     <div class="shopping-cart-item__buttons">
       <div class="input-group shopping-cart-item__quantity">
         <button (click)="removeOne()" class="btn btn-outline-secondary" id="button-addon1" type="button">-</button>
-        <input (change)="changeQuantity($event)" type="number" min="1" max="999" class="form-control text-center" [(ngModel)]="item.quantity"
+        <input (change)="changeQuantity($event)" type="number" min="1" max="999" class="form-control text-center"
+               [(ngModel)]="item.quantity"
                aria-label="Example text with button addon" aria-describedby="button-addon1">
         <button (click)="addOne()" class="btn btn-outline-secondary" type="button">+</button>
       </div>

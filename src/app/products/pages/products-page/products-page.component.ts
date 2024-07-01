@@ -31,7 +31,7 @@ export class ProductsPageComponent implements OnInit{
   initFilterForm(): FormGroup {
     return this._formBuilder.group({
       page: [ 1 ],
-      pageSize: [ 10 ],
+      pageSize: [ 12 ],
       isSortAscending: [ true ],
       search: [ null ],
       brandId: [ null ],

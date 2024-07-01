@@ -11,6 +11,6 @@ export class ObjectiveService {
   private readonly _apiUrl : string = `${environment.apiUrl}/objectives`;
   private readonly _http: HttpClient = inject(HttpClient);
   public getObjectives(): Observable<GetObjective[]>{
-    return this._http.get<GetObjective[]>(`${this._apiUrl}/get-all`);
+    return this._http.get<GetObjective[]>(`${this._apiUrl}/get-all-active`);
   }
 }

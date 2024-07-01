@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ShoppingCartService, SubcategoryService } from "../../services";
 import { RouteItem } from "../../interfaces/route-item.interface";
 import { BrandService } from "../../services";
@@ -8,7 +8,8 @@ import { Subscription } from "rxjs";
 @Component({
   selector: 'shared-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   categories: RouteItem[] = [];

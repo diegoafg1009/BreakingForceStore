@@ -3,9 +3,9 @@
     <thead>
     <tr>
       <th scope="col" colspan="2">Producto</th>
-      <th scope="col" class="text-center">Precio</th>
-      <th scope="col" class="text-center">Cantidad</th>
-      <th scope="col" class="text-center">Importe</th>
+      <th scope="col" class="text-center d-none d-sm-table-cell">Precio</th>
+      <th scope="col" class="text-center d-none d-sm-table-cell">Cantidad</th>
+      <th scope="col" class="text-center d-none d-sm-table-cell">Importe</th>
     </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -24,12 +24,16 @@
             } @else {
               <span>{{ item.variation.weight.toFixed(2) }} kg</span>
             }
+            <div class="d-sm-none d-flex justify-content-between">
+              <shared-currency [value]="item.variation.unitPrice"></shared-currency>
+              <span class="fw-bold">x {{ item.quantity }}</span>
+            </div>
           </td>
-          <td class="text-center">
+          <td class="text-center d-none d-sm-table-cell">
             <shared-currency [value]="item.variation.unitPrice"></shared-currency>
           </td>
-          <td class="text-center">{{ item.quantity }}</td>
-          <td class="text-center fw-bold">
+          <td class="text-center d-none d-sm-table-cell">{{ item.quantity }}</td>
+          <td class="text-center fw-bold d-none d-sm-table-cell">
             <shared-currency class="item-total" [value]="item.quantity * item.variation.unitPrice"></shared-currency>
           </td>
         </tr>

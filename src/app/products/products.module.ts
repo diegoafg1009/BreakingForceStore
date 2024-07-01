@@ -12,6 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from "../shared/shared.module";
 import { CardComponent } from './components/card/card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { ProductsLayoutComponent } from './layouts/products-layout/products-layout.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FilterComponent,
     GridComponent,
     CardComponent,
-    CarouselComponent
+    CarouselComponent,
+    ProductsLayoutComponent
   ],
   imports: [
     CommonModule,

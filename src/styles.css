@@ -5,25 +5,4 @@ body{
 }
 
 
-.accordion-button:not(.collapsed) {
-  background-color: white!important;
-  color: #ffc107!important;
-}
 
-.accordion-button:hover {
-  color: #ffc107;
-}
-
-.accordion-button{
-  font-weight: bold;
-}
-
-accordion-button:not(.collapsed)::after{
-  background-image: none!important;
-}
-
-.accordion-button::after {
-  background-image: none!important;
-  content: "\f282"!important;
-  font-family: bootstrap-icons !important;
-}

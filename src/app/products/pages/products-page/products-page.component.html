@@ -1,16 +1,17 @@
-<div class="py-5">
-  <div class="container p-4">
-    <div class="d-flex">
-      <products-filter class="products-filter position-relative" [filterProductParams]="filterProductParams" (onSubmit)="onSubmit($event)"></products-filter>
-      @if(products.length === 0){
+<div class="row">
+  <products-filter class="products-filter col-12 col-lg-auto" [filterProductParams]="filterProductParams"
+                   (onSubmit)="onSubmit($event)"></products-filter>
+  <div class="col">
+    @if (products.length === 0) {
 
-        <div class="d-flex justify-content-center align-items-center flex-grow-1">
-          <h3 class="text-center">No hay productos encontrados</h3>
-        </div>
-      }@else{
-        <products-grid class="flex-grow-1 px-5" [products]="products"></products-grid>
-      }
-
-    </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 h-100">
+        <h3 class="text-center">No hay productos encontrados</h3>
+      </div>
+    } @else {
+      <products-grid class="container" [products]="products"></products-grid>
+    }
   </div>
+
+
 </div>
+

@@ -12,7 +12,7 @@ export class SubcategoryService {
   private readonly _http: HttpClient = inject(HttpClient);
 
   public getSubcategories(): Observable<GetSubcategory[]>{
-    return this._http.get<GetSubcategory[]>(`${this._apiUrl}/get-all`);
+    return this._http.get<GetSubcategory[]>(`${this._apiUrl}/get-all-active`);
   }
 
 }

@@ -1,29 +1,28 @@
-<ng-container>
-  <div class="text-center mb-4">
-    <span class="h4 fw-bold">Resumen de Compra</span>
-  </div>
-  <table class="table-borderless w-100">
-    <tbody>
-    <tr>
-      <th class="text-start" scope="row">Total</th>
-      <td class="text-end">
-        <shared-currency [value]="total"></shared-currency>
-      </td>
-    </tr>
-    <tr>
-      <th class="text-start" scope="row">Gastos de Envío</th>
-      <td class="text-end">{{ shipping ?? 'Por Calcular' }}</td>
-    </tr>
+<div class="text-center mb-4">
+  <span class="h4 fw-bold">Resumen de Compra</span>
+</div>
+<table class="table-borderless w-100">
+  <tbody>
+  <tr>
+    <th class="text-start" scope="row">Total</th>
+    <td class="text-end">
+      <shared-currency [value]="total"></shared-currency>
+    </td>
+  </tr>
+  <tr>
+    <th class="text-start" scope="row">Gastos de Envío</th>
+    <td class="text-end">{{ shipping ?? 'Por Calcular' }}</td>
+  </tr>
 
-    </tbody>
-    <tfoot>
-    <tr>
-      <th class="text-start" scope="row">TOTAL</th>
-      <td class="text-end fw-bold">
-        <shared-currency [value]="total"></shared-currency>
-      </td>
-    </tr>
-    </tfoot>
-  </table>
-  <button class="btn btn btn-dark w-100 fw-bold btn-lg" (click)="goToPayment()">Proceder al Pago</button>
-</ng-container>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th class="text-start" scope="row">TOTAL</th>
+    <td class="text-end fw-bold">
+      <shared-currency [value]="total"></shared-currency>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+<button class="btn btn btn-dark w-100 fw-bold btn-lg" (click)="goToPayment()">Proceder al Pago</button>
+
