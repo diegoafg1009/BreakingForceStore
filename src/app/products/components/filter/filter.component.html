@@ -41,7 +41,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <div class="d-flex flex-column">
+    <div [formGroup]="filterProductParams" class="d-flex flex-column">
       <shared-accordion class="border-bottom" title="Categoría" [withoutColor]="true" [active]="true"
                         [titleStyles]="['px-0', 'shadow-none']"
                         [rounded]="false">

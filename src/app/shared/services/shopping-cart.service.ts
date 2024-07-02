@@ -18,7 +18,11 @@ export class ShoppingCartService {
 
   private loadItems(): void {
     const localStorageItems = localStorage.getItem('shoppingCartItems');
-    if (localStorageItems) {
+    if (localStorageItems == null || localStorageItems === "[]") {
+      this._items.next([]);
+      this.isInitialized = true;
+    }
+    else{
       const requests = [];
       for (let item of JSON.parse(localStorageItems)) {
         requests.push(
@@ -36,9 +40,6 @@ export class ShoppingCartService {
           this.isInitialized = true;
         }
       });
-    } else {
-      this._items.next([]);
-      this.isInitialized = true;
     }
   }
 
