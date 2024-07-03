@@ -5,7 +5,7 @@
       <ul class="list-group">
         @for (item of items; track item){
           <li class="list-group-item p-0 rounded-0 m-0">
-            <a class="nav-link px-4 py-2" [href]="getFullPagePath(item.path, item.queryParams)" >{{ item.label }}</a>
+            <a class="nav-link px-4 py-2" [routerLink]="item.path" [queryParams]="item.queryParams">{{ item.label }}</a>
           </li>
         }
       </ul>

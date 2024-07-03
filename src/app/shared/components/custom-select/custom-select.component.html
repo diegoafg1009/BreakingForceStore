@@ -1,0 +1,6 @@
+<select [(ngModel)]="value" [ngClass]="styles">
+  <option [value]="null">{{ placeholder ?? "Seleccione" }}</option>
+  @for (option of options; track option.value) {
+    <option [value]="option.value">{{ option.label }}</option>
+  }
+</select>

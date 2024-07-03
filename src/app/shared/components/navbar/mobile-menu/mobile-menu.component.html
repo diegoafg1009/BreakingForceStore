@@ -10,6 +10,9 @@
   <div class="offcanvas-body p-0 pt-0">
     <ul class="navbar__list">
       <li class="border rounded-0">
+        <shared-search-bar [styles]="['text-black', 'fs-5', 'py-2', 'border-0']"></shared-search-bar>
+      </li>
+      <li class="border rounded-0">
         <shared-accordion title="Categorías" [titleStyles]="['fs-2']" [withoutColor]="true" [active]="false" [rounded]="false">
           <ul class="list-group list-group-flush px-0">
             @for (item of categories; track item.label) {

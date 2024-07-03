@@ -26,9 +26,4 @@ export class NavbarDropdownComponent {
   toggle() {
     this._isOpen = !this._isOpen;
   }
-
-  getFullPagePath(path: string, queryParams?: { [key: string]: string }):string {
-    return this._router.createUrlTree([path], { queryParams }).toString();
-  }
-
 }

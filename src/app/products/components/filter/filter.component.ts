@@ -21,16 +21,10 @@ export class FilterComponent implements OnInit {
   private readonly _brandService: BrandService = inject(BrandService);
   private readonly _objectiveService: ObjectiveService = inject(ObjectiveService);
 
-  @Output()
-  public onSubmit: EventEmitter<FormGroup> = new EventEmitter();
-
   ngOnInit(): void {
     this.loadSubcategoryOptions();
     this.loadBrandOptions();
     this.loadObjectiveOptions();
-    this.filterProductParams.valueChanges.subscribe(() => {
-      this.emit(this.filterProductParams);
-    });
   }
 
   loadSubcategoryOptions() {
@@ -70,8 +64,11 @@ export class FilterComponent implements OnInit {
       });
   }
 
-  public emit(filterProductParams: FormGroup) {
-    this.onSubmit.emit(this.filterProductParams);
+  get searchValue(): string | null {
+    return this.filterProductParams.get('search')?.value;
+  }
+  resetSearchValue() {
+    this.filterProductParams.get('search')?.setValue(null);
   }
 
 }

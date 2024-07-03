@@ -1,0 +1,21 @@
+<div [formGroup]="paginationForm" class="d-flex justify-content-center align-items-center">
+  <div>
+    <ul class="d-flex align-items-center gap-2 px-0">
+      @if(previousPageValue > 1){
+        <shared-custom-input-button [formControlName]="pageControlName" [text]="'<'"
+                                    [value]=previousPageValue
+                                    [classList]="['btn','btn-light','rounded' ]"></shared-custom-input-button>
+      }
+      @for (pageValue of pageValues; track pageValue) {
+        <shared-custom-input-button [formControlName]="pageControlName" [text]="pageValue.toString()"
+                                    [value]=pageValue
+                                    [classList]="['btn', pageValue == currentPageValue ? 'btn-warning' : 'btn-outline-warning','rounded' ]"></shared-custom-input-button>
+      }
+      @if(nextPageValue <= totalPages){
+        <shared-custom-input-button [formControlName]="pageControlName" [text]="'>'"
+                                    [value]=nextPageValue
+                                    [classList]="['btn', 'btn-light','rounded' ]"></shared-custom-input-button>
+      }
+    </ul>
+  </div>
+</div>

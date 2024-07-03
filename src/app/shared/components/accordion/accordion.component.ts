@@ -10,8 +10,6 @@ export class AccordionComponent {
   title: string = '';
   @Input()
   titleStyles: string[]  = [];
-  //@Input({ required: true })
-  activeColor: string = '#ffc107';
   @Input()
   active: boolean = true;
   @Input()

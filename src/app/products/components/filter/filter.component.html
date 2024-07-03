@@ -26,13 +26,23 @@
     </shared-accordion>
   </div>
 </aside>
-<div class="bg-secondary-subtle rounded p-3 d-flex justify-content-between d-lg-none">
-  <button class="btn btn-outline-dark" data-bs-toggle="offcanvas" data-bs-target="#mobile-filter"
-          aria-controls="mobile-filter">
-    <i class="bi bi-funnel-fill me-2"></i>
-    <span>Filtros</span>
-  </button>
-  <div></div>
+<div class="bg-secondary-subtle rounded p-3 d-flex flex-column d-lg-none">
+  <div class="d-flex justify-content-between w-100">
+    <button class="btn btn-outline-dark me-2" data-bs-toggle="offcanvas" data-bs-target="#mobile-filter"
+            aria-controls="mobile-filter">
+      <i class="bi bi-funnel-fill"></i>
+      <span class="ms-2 d-none d-sm-inline-block">Filtros</span>
+    </button>
+    <products-order-by-input [filterProductParams]="filterProductParams"></products-order-by-input>
+  </div>
+  @if (searchValue) {
+    <div>
+      <button class="btn btn-dark mt-2 d-flex mw-100 text-start overflow-hidden" aria-controls="mobile-filter" (click)="resetSearchValue()">
+        <i class="bi bi-x"></i>
+        <span class="me-2">{{ searchValue }}</span>
+      </button>
+    </div>
+  }
 </div>
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="mobile-filter"
      aria-labelledby="mobile-filter">

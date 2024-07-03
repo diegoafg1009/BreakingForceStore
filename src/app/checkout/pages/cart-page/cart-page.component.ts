@@ -44,7 +44,6 @@ export class CartPageComponent implements OnInit, OnDestroy{
     if (item.quantity > 1) {
       this._shoppingCartService.modifyItemQuantity(item.variation.id, item.quantity - 1);
     }
-    console.log(item.quantity);
   }
 
   removeItem(variationId: string): void {

@@ -12,6 +12,7 @@ import { first } from "rxjs";
   styleUrl: './products-page.component.css'
 })
 export class ProductsPageComponent implements OnInit{
+  isLoaded: boolean = false;
   products: GetProductSimple[] = [];
   totalRecords: number = 0;
   totalPages: number = 0;
@@ -22,10 +23,17 @@ export class ProductsPageComponent implements OnInit{
   private readonly _productService: ProductService = inject(ProductService);
   ngOnInit(): void {
     this.filterProductParams = this.initFilterForm();
-    this._route.queryParams.pipe(first()).subscribe(params => {
+    this._route.queryParams.subscribe((params) => {
       this.filterProductParams.patchValue(params);
+      this.setupQueryParamsListeners(params);
+      this.loadProducts(this.filterProductParams);
     });
-    this.loadProducts(this.filterProductParams);
+    this.filterProductParams.valueChanges.subscribe(params => {
+      this._router.navigate([], {
+        queryParams: params,
+        queryParamsHandling: 'merge'
+      });
+    });
   }
 
   initFilterForm(): FormGroup {
@@ -41,24 +49,34 @@ export class ProductsPageComponent implements OnInit{
     });
   }
 
+  setupQueryParamsListeners(params: any) {
+    Object.keys(params).forEach(key => {
+      if (key !== 'page' && key !== 'pageSize') {
+        const subscription = this._route.queryParams.subscribe(newParams => {
+          if (params[key] !== newParams[key]) {
+            this.filterProductParams.get('page')?.setValue(1);
+            subscription.unsubscribe();
+          }
+        });
+      }
+    });
+  }
+
+  get searchValue() : string | null {
+    return this.filterProductParams.get('search')?.value;
+  }
+
+  resetSearchValue() {
+    this.filterProductParams.get('search')?.setValue(null);
+  }
+
   loadProducts(filterProductParams: FormGroup): void {
     const queryParams = HttpUtils.ToQueryParams(filterProductParams.value);
     this._productService.getProducts(queryParams).subscribe((response) => {
       this.products = response.body ?? [];
       this.totalRecords = Number(response.headers.get('totalRecords')!);
       this.totalPages = Number(response.headers.get('totalPages')!);
+      this.isLoaded = true;
     });
   }
-
-  onSubmit(filterProductParams: FormGroup) {
-    this.loadProducts(filterProductParams);
-    console.log(filterProductParams.value);
-    this._route.queryParams.subscribe(params => {
-      this._router.navigate([], {
-        queryParams: filterProductParams.value,
-        queryParamsHandling: 'merge'
-      });
-    });
-  }
-
 }

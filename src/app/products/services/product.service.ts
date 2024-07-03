@@ -4,6 +4,7 @@ import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { HttpUtils } from "../../shared/utils/http-utils";
+import { Option } from "../../shared/interfaces/option.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,14 @@ export class ProductService {
 
   public getProducts(filterParams: HttpParams): Observable<HttpResponse<GetProductSimple[]>> {
     return this._http.get<GetProductSimple[]>(`${ this._apiUrl }/filter`, { params: filterParams, observe: 'response'});
+  }
+
+  public getOrderByOptions(): Option[] {
+    return [
+      { value: 'LowerPrice-true', label: 'Precio (menor a mayor)' },
+      { value: 'LowerPrice-false', label: 'Precio (mayor a menor)' },
+      { value: 'Name-true', label: 'Nombre (A-Z)' },
+      { value: 'Name-false', label: 'Nombre (Z-A)' },
+    ];
   }
 }

@@ -116,7 +116,6 @@ export class ProductInfoComponent extends BaseForm implements OnInit{
   public onSubmit(): void {
     if(this.shoppingCartForm.invalid){
       this.shoppingCartForm.markAllAsTouched();
-      console.log('Invalid form');
       return;
     }
     const variationId = this.product.variations.find((variation) => {

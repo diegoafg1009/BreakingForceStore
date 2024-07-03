@@ -13,6 +13,7 @@ import { SharedModule } from "../shared/shared.module";
 import { CardComponent } from './components/card/card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ProductsLayoutComponent } from './layouts/products-layout/products-layout.component';
+import { OrderByInputComponent } from './components/order-by-input/order-by-input.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ProductsLayoutComponent } from './layouts/products-layout/products-layo
     GridComponent,
     CardComponent,
     CarouselComponent,
-    ProductsLayoutComponent
+    ProductsLayoutComponent,
+    OrderByInputComponent
   ],
   imports: [
     CommonModule,

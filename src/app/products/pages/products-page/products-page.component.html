@@ -1,14 +1,37 @@
 <div class="row">
-  <products-filter class="products-filter col-12 col-lg-auto" [filterProductParams]="filterProductParams"
-                   (onSubmit)="onSubmit($event)"></products-filter>
-  <div class="col">
+  <products-filter class="products-filter col-12 col-lg-auto"
+                   [filterProductParams]="filterProductParams"></products-filter>
+  <div class="col overflow-hidden mw-100">
+    <div class="bg-secondary-subtle rounded p-3 d-lg-flex justify-content-between align-items-center d-none">
+      <div>
+        @if (searchValue) {
+          <button class="btn btn-dark search-info d-flex overflow-hidden" aria-controls="mobile-filter" (click)="resetSearchValue()">
+            <i class="bi bi-x"></i>
+            <span class="me-2">{{ searchValue }}</span>
+          </button>
+        }
+      </div>
+      <products-order-by-input [filterProductParams]="filterProductParams"></products-order-by-input>
+    </div>
     @if (products.length === 0) {
 
-      <div class="d-flex justify-content-center align-items-center flex-grow-1 h-100">
-        <h3 class="text-center">No hay productos encontrados</h3>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 h-100" style="min-height: 50vh">
+        @if (!isLoaded) {
+          <h3 class="text-center">Cargando...</h3>
+        } @else if (searchValue) {
+          <h3 class="text-center overflow-hidden">No hay productos que coincidan con la búsqueda "{{ searchValue }}" y los filtros
+            seleccionados.</h3>
+        } @else {
+          <h3 class="text-center">No hay productos que coincidan con los filtros seleccionados.</h3>
+        }
       </div>
     } @else {
       <products-grid class="container" [products]="products"></products-grid>
+      @if (totalPages > 1) {
+        <shared-pagination [paginationForm]="filterProductParams" [totalPages]="totalPages"
+                           [totalRecords]="totalRecords" [actualRecords]="products.length"
+                           [currentPageValue]="filterProductParams.get('page')!.value"></shared-pagination>
+      }
     }
   </div>
 
